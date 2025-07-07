@@ -1,5 +1,5 @@
 <?php
-$idPessoa = $_GET['idPessoa'];
+$idPessoa = $_POST['idPessoa'];
 
 $conexao = new PDO('mysql:host=localhost; dbname=controleTreino', 'root', '');
 
@@ -11,9 +11,8 @@ $sentenca->execute();
 $conexao = null;
 
 if ($sentenca->rowCount() > 0) {
-    echo "<script>alert('Registro excluído com sucesso!');</script>";
+    echo 1;
 } else {
-    echo "<script>alert('Erro ao excluir registro');</script>";
+    echo 0;
 }
-echo "<script>window.location.replace('tabela.php');</script>";
 ?>

@@ -20,6 +20,31 @@ $conexao = null;
 </head>
 
 <body>
+    <script>
+        function confirmarExclusao(codigo) {
+            var resposta = confirm('confirma a exclusão?');
+
+            if (resposta) {
+                $.ajax({
+                        url: 'excluir.php',
+                        type: 'post',
+                        data: {
+                            idPessoa: codigo,
+                        }
+
+                    })
+
+                    .done(function(resultado) {
+                        if (resultado == 1) {
+                            alert('Registro exluido');
+                            window.location.replace('tabela.php');
+                        } else {
+                            alert('erro na exclusão');
+                        }
+                    })
+            }
+        }
+    </script>
     <div class="container mt-4">
         <h1>Consulta - Pessoa</h1>
         <hr />
@@ -41,7 +66,7 @@ $conexao = null;
                         <td><?php echo $registro['cpf']; ?></td>
                         <td><?php echo $registro['email']; ?></td>
                         <td>
-                            <a href="excluir.php?idPessoa=<?php echo $registro['idPessoa']; ?>" class="btn btn-danger btn-sm">Excluir</a>
+                            <button class="btn btn-danger btn-sm" onclick="confirmarExclusao(<?php echo $registro['idPessoa']; ?>)">Excluir</button>
                             <a href="index.php?idPessoa=<?php echo $registro['idPessoa']; ?>" class="btn btn-warning btn-sm">Editar</a>
                         </td>
                     </tr>
