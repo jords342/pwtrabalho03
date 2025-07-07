@@ -20,6 +20,10 @@ $conexao = null;
 </head>
 
 <body>
+    
+<?php
+    include_once "navegacao.php"
+?>
     <script>
         function confirmarExclusao(codigo) {
             var resposta = confirm('confirma a exclusão?');
