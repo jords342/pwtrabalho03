@@ -9,5 +9,4 @@ function criarConexao(){
 function fecharConexao(){
     $conexao = null;
 }
-
 ?>
