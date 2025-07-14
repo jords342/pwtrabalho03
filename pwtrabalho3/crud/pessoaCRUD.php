@@ -51,9 +51,9 @@ function excluirPessoa($idPessoa) {
     return $sentenca->rowCount();
 }
 
-function verificarCpfExistente($cpf, $idPessoa = 0) {
+function verificarCpfExistente($cpf, $idPessoa) {
     $conexao = criarConexao();
-    $sql = "SELECT COUNT(*) as total FROM tbPessoa WHERE cpf = :cpf AND idPessoa != :idPessoa";
+    $sql = "SELECT COUNT(*) as total FROM tbPessoa WHERE cpf = :cpf";
     $sentenca = $conexao->prepare($sql);
     $sentenca->bindValue(':cpf', $cpf);
     $sentenca->bindValue(':idPessoa', $idPessoa);
