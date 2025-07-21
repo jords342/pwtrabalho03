@@ -51,12 +51,22 @@ function excluirPessoa($idPessoa) {
     return $sentenca->rowCount();
 }
 
-function verificarCpfExistente($cpf, $idPessoa) {
+function verificarCpfExistente($cpf, $idPessoa = 0) {
     $conexao = criarConexao();
+    
     $sql = "SELECT COUNT(*) as total FROM tbPessoa WHERE cpf = :cpf";
+
+    if ($idPessoa > 0) {
+        $sql .= " AND idPessoa != :idPessoa";
+    }
+
     $sentenca = $conexao->prepare($sql);
     $sentenca->bindValue(':cpf', $cpf);
-    $sentenca->bindValue(':idPessoa', $idPessoa);
+
+    if ($idPessoa > 0) {
+        $sentenca->bindValue(':idPessoa', $idPessoa);
+    }
+
     $sentenca->execute();
     $resultado = $sentenca->fetch(PDO::FETCH_ASSOC);
     $conexao = null;
