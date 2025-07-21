@@ -1,11 +1,11 @@
 <?php
 include_once "crud/pessoaCRUD.php";
 if (isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['email'])) {
-    $cpf_sem_mascara = preg_replace('/[^0-9]/', '', $_POST['cpf']);
+    $cpfSemMascara = preg_replace('/[^0-9]/', '', $_POST['cpf']);
     $dados = [
         'idPessoa' => isset($_POST['idPessoa']) ? $_POST['idPessoa'] : 0,
         'nome' => $_POST['nome'],
-        'cpf' => $cpf_sem_mascara,
+        'cpf' => $cpfSemMascara,
         'email' => $_POST['email']
     ];
     $resultado = salvarPessoa($dados);
